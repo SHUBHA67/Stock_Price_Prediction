@@ -2,10 +2,9 @@ streamlit
 pandas
 numpy
 yfinance
-matplotlib.pyplot
+matplotlib
 tensorflow
-plotly.express
-plotly.graph_objects
+plotly
 sklearn
 seaborn
 datetime
