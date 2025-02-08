@@ -1,0 +1,11 @@
+streamlit
+pandas
+numpy
+yfinance
+matplotlib.pyplot
+tensorflow
+plotly.express
+plotly.graph_objects
+sklearn
+seaborn
+datetime
