@@ -5,6 +5,6 @@ yfinance
 matplotlib
 tensorflow
 plotly
-sklearn
+scikit-learn
 seaborn
 datetime
