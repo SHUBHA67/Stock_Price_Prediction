@@ -14,9 +14,11 @@ st.title('Stock Price Prediction using LSTM')
 st.write("""This application predicts stock prices using an LSTM model. Please enter the stock ticker, start date, and end date to view predictions.""")
 
 # User Inputs
+today = dt.date.today()
+
 stock = st.sidebar.text_input('Enter Stock Ticker (e.g., AAPL, MSFT):', 'NVDA')
 start = st.sidebar.date_input('Start Date', value=pd.to_datetime('2000-01-01'))
-end = st.sidebar.date_input('End Date', value=pd.to_datetime('2025-01-15'))
+end = st.sidebar.date_input('End Date', value=today)
 
 def load_data(stock):
     data = yf.download(stock, start, end)
