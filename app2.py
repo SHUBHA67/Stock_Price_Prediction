@@ -132,9 +132,9 @@ if st.sidebar.button("Submit"):
     
     st.subheader("Next Day Preditiction")
     df01=df01.iloc[1:]
-    df02=df01[['Close']].iloc[-10:]
+    df02=df01[['Close']].iloc[-5:]
     data_scaled3 = scaler.fit_transform(df02)
-    data1=data_scaled3.reshape(1,10,1)
+    data1=data_scaled3.reshape(1,5,1)
     pred1=model.predict(data1)
     predictons3 = scaler.inverse_transform(pred1)
     st.text(f'{predictons3[0,0]}')
