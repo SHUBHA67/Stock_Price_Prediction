@@ -139,30 +139,31 @@ if st.sidebar.button("Submit"):
     predictons3 = scaler.inverse_transform(pred1)
     st.text(f'{predictons3[0,0]}')
 
-    st.subheader("Next 5 Days Forecast using LSTM")
+    st.subheader("Next 30 Days Forecast using LSTM")
 
     future_predictions = []
     last_100_days = df01[['Close']].iloc[-100:]
     input_seq = scaler.fit_transform(last_100_days).reshape(1, 100, 1)
 
-    for _ in range(5):
+    for _ in range(30):  # Predict for 30 days
         pred = model.predict(input_seq)[0][0]
         future_predictions.append(pred)
-        # Append predicted value to the input sequence
         input_seq = np.append(input_seq[:, 1:, :], [[[pred]]], axis=1)
 
-    # Inverse transform the predictions
+    # Inverse transform predictions
     future_predictions = scaler.inverse_transform(np.array(future_predictions).reshape(-1, 1)).flatten()
 
-    # Create future date range
+    # Generate future dates (30 calendar days)
     last_date = pd.to_datetime(df01['Date'].iloc[-1])
-    future_dates = [last_date + pd.Timedelta(days=i) for i in range(1, 6)]
+    future_dates = [last_date + pd.Timedelta(days=i) for i in range(1, 31)]
 
-    # Plot the next 5-day predictions
-    fig_future, ax_future = plt.subplots(figsize=(12, 6))
-    ax_future.plot(future_dates, future_predictions, marker='o', color='orange', label='Predicted Close Price')
-    ax_future.set_title("Next 5 Days Stock Price Forecast")
+    # Plotting the results
+    fig_future, ax_future = plt.subplots(figsize=(14, 6))
+    ax_future.plot(future_dates, future_predictions, marker='o', linestyle='-', color='orange', label='Predicted Close Price')
+    ax_future.set_title("Next 30 Days Stock Price Forecast")
     ax_future.set_xlabel("Date")
     ax_future.set_ylabel("Predicted Close Price")
+    ax_future.grid(True)
     ax_future.legend()
     st.pyplot(fig_future)
+
