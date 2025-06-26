@@ -139,7 +139,7 @@ if st.sidebar.button("Submit"):
     predictons3 = scaler.inverse_transform(pred1)
     st.text(f'{predictons3[0,0]}')
 
-        st.subheader("Next 5 Days Forecast using LSTM")
+    st.subheader("Next 5 Days Forecast using LSTM")
 
     future_predictions = []
     last_100_days = df01[['Close']].iloc[-100:]
